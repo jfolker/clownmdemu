@@ -59,7 +59,7 @@ static size_t state_rewind_remaining;
 #else
 static EmulationState state_rewind_buffer[1];
 #endif
-static EmulationState *emulation_state;
+static EmulationState *emulation_state = state_rewind_buffer;
 
 static bool quick_save_exists = false;
 static EmulationState quick_save_state;
@@ -278,8 +278,8 @@ static void RecreateUpscaledFramebuffer(unsigned int display_width, unsigned int
 static SDL_AudioDeviceID audio_device;
 static Uint32 audio_device_buffer_size;
 static unsigned long audio_device_sample_rate;
-static cc_bool pal_mode;
-static cc_bool low_pass_filter = cc_true;
+static bool pal_mode;
+static bool low_pass_filter = true;
 
 static Mixer_Constant mixer_constant;
 static Mixer_State mixer_state;
